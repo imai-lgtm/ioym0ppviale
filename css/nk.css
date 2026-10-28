@@ -1,0 +1,125 @@
+/* 日本介護医療センター 採用体験ゲーム — このゲームだけの見た目（style.css のあとに読む） */
+
+/* ===== タイトル（全面写真＋ゲーム名。チェルパ～ちゃんが案内） ===== */
+#title{background:#fff}
+.t-hero{position:relative;flex:1 1 0;min-height:250px;overflow:hidden;border-radius:0 0 32px 32px;background:var(--bg)}
+.t-hero .kv{position:absolute;inset:0;background-size:cover;background-position:50% 22%;transform-origin:50% 30%;animation:kv 18s ease-in-out infinite alternate}
+.t-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,20,24,0) 0,rgba(17,20,24,0) 55%,rgba(17,20,24,.6) 100%)}
+.t-body .t-logo{display:block;height:30px;width:auto;max-width:calc(100% - 110px);object-fit:contain;object-position:0 50%;margin:0 0 12px}
+.t-quote{position:absolute;left:22px;right:120px;bottom:22px;color:#fff;font-size:17px;font-weight:800;line-height:1.5;letter-spacing:.02em;white-space:pre-line;text-shadow:0 1px 10px rgba(0,0,0,.35)}
+.t-quote::before{content:"";display:block;width:28px;height:3px;border-radius:2px;background:var(--accent);margin-bottom:10px}
+.t-body{position:relative;padding:20px 22px calc(var(--safe-b) + 14px)}
+.t-guide{position:absolute;right:10px;top:-118px;width:108px;height:auto;filter:drop-shadow(0 6px 10px rgba(17,20,24,.18));cursor:pointer;transform-origin:50% 100%;animation:gIn .7s .35s var(--ease) both}
+.t-guide.hop{animation:gHop .5s var(--ease)}
+@keyframes gIn{from{opacity:0;transform:translateY(24px) scale(.9)}}
+@keyframes gHop{30%{transform:translateY(-14px) rotate(-4deg)}60%{transform:translateY(0) rotate(2deg)}}
+.t-eye{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 10%,#fff);padding:5px 10px;border-radius:999px}
+.t-eye::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+#title h1{font-size:42px;margin:10px 0 6px;line-height:1.12}
+#title h1 em{display:inline-block;position:relative}
+#title h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:.22em;border-radius:3px;background:color-mix(in srgb,var(--accent) 16%,transparent);z-index:-1}
+.t-sub{font-size:14px}
+.t-pills{margin:12px 0 16px}
+#title.ready .t-hero{animation:photoIn .6s var(--ease) both}
+@container app (max-height:760px){#title h1{font-size:34px}.t-guide{width:92px;top:-100px}.t-quote{font-size:15px;bottom:16px}}
+@container app (max-height:640px){.t-pills{display:none}}
+
+/* ===== 時刻ラベル（Vlogのオレンジのスタンプをやめて、すっきりした白文字のピルに） ===== */
+.stamp{font-family:var(--font);font-weight:800;font-size:13px!important;color:#fff;text-shadow:none;letter-spacing:.04em;
+  background:rgba(17,20,24,.5);padding:3px 10px;border-radius:999px;font-variant-numeric:tabular-nums}
+.res-hero .stamp{background:color-mix(in srgb,var(--accent) 12%,#fff);color:var(--accent-ink)}
+
+/* ===== 起動・クリップの小さなマーク ===== */
+#splash img{width:96px}
+.cl-who .s img{width:24px;border-radius:50%}
+
+/* ===== チャット：スタンプと、入居者さんの絵 ===== */
+.bub.pic.stamp{background:transparent;border-radius:0}
+.bub.pic.stamp img{width:132px;aspect-ratio:1/1;object-fit:contain}
+.bub.pic.res{background:#FBF6F2}
+.bub.pic.res img{width:180px;aspect-ratio:1/1;object-fit:cover}
+
+/* ===== 結果：リンク・電話 ===== */
+#resLinks{display:contents}
+#resLinks .lrow{box-shadow:0 -1px 0 var(--line)}
+.info .tel{margin-top:14px;min-height:52px;font-size:15px}
+
+/* チャットの時刻ラベルも白文字のピルに */
+.c-stamp{color:#fff!important;text-shadow:none!important;background:rgba(17,20,24,.42)!important}
+
+/* =========================================================
+   PC・タブレット：スマホの枠を出さず、画面いっぱいで遊ぶ
+   ========================================================= */
+@media (min-width:600px){
+  body{background:var(--bg)}
+  #app{max-width:none;height:100%;height:100dvh;top:auto;transform:none;border-radius:0;box-shadow:none}
+}
+/* 幅が広いとき：文字の列は読みやすい幅にして中央へ */
+@container app (min-width:600px){
+  .c-bar{padding-left:max(14px,calc(50% - 380px))}
+  .c-log{padding-left:max(12px,calc(50% - 380px));padding-right:max(12px,calc(50% - 380px))}
+  .c-tray{padding-left:max(14px,calc(50% - 380px));padding-right:max(14px,calc(50% - 380px))}
+  .c-stamp{right:max(14px,calc(50% - 380px))}
+  .bub.pic img{width:300px}
+  .bub.pic.res img{width:220px}
+  .sc-head{padding-left:max(22px,calc(50% - 320px));padding-right:max(22px,calc(50% - 320px))}
+  .r-stage{width:min(100%,600px);margin-left:auto;margin-right:auto}
+  .r-say,.r-btns{width:min(100% - 32px,560px);margin-left:auto;margin-right:auto}
+  .r-btns{padding-left:0;padding-right:0}
+  .w-card{flex-basis:min(340px,62%)}
+  .w-foot{width:min(100%,600px);margin:0 auto}
+  .res-hero{padding-left:max(22px,calc(50% - 380px));padding-right:max(22px,calc(50% - 380px))}
+  .res-body{width:min(100%,800px);margin:0 auto}
+  .sheet-bg{justify-content:center}
+  .sheet{max-width:600px;border-radius:22px 22px 0 0}
+  .t-body{padding-left:max(22px,calc(50% - 300px));padding-right:max(22px,calc(50% - 300px))}
+  .t-guide{right:max(10px,calc(50% - 300px))}
+  .cl-head,.cl-cap,.cl-card{width:min(100%,720px);margin-left:auto;margin-right:auto}
+  .cl-card{width:min(100% - 24px,700px)}
+  .cl-stage{width:min(100% - 32px,960px);margin-left:auto;margin-right:auto}
+  .mm-head,.mm-foot{width:min(100%,600px);margin-left:auto;margin-right:auto}
+}
+
+/* 横長の画面（PC）：左右2列に組みかえる */
+@container app (min-width:900px) and (orientation:landscape){
+  /* タイトル：左に大きな写真、右にゲーム名 */
+  #title.on{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(420px,1fr)}
+  .t-hero{border-radius:0 44px 44px 0;min-height:0}
+  .t-quote{font-size:24px;left:48px;bottom:44px;right:48px}
+  .t-body .t-logo{height:42px;margin-bottom:22px}
+  .t-body{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:48px clamp(40px,6cqw,96px)}
+  .t-body>*:not(.t-logo):not(.t-guide):not(.t-eye){max-width:560px;width:100%}
+  .t-body .t-eye{width:auto}
+  #title h1{font-size:clamp(48px,5.4cqw,76px)}
+  .t-sub{font-size:17px}
+  .t-guide{position:absolute;width:150px;right:auto;left:-96px;top:auto;bottom:44px;max-width:none}
+  .t-meta{justify-content:flex-start}
+
+  /* 写真クリップ：左に写真、右に説明とクイズ */
+  #clip.on{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(380px,1fr);grid-template-rows:auto auto minmax(0,1fr);column-gap:8px}
+  .cl-head{grid-column:1/-1;width:auto;margin:0;padding:12px 24px 0}
+  .cl-stage{grid-column:1;grid-row:2/4;width:auto;margin:10px 0 24px 24px;min-height:0}
+  #clip.answered .cl-stage{min-height:0}
+  .cl-cap{grid-column:2;grid-row:2;width:auto;margin:0;padding:24px 28px 12px}
+  .cl-cap.min p{display:block}
+  .cl-cap h2{font-size:28px}
+  .cl-cap p{font-size:15px}
+  .cl-card{grid-column:2;grid-row:3;width:auto;margin:0 24px 24px 16px;align-self:start;max-height:100%}
+
+  /* ホームさんぽ：カードを横にならべる */
+  .w-track{padding:20px max(24px,calc(50% - 560px))}
+  .w-card{flex-basis:300px}
+
+  /* 見守りラウンド：左にお部屋、右に情報とボタン */
+  .mm{display:grid;grid-template-columns:auto minmax(320px,420px);grid-template-rows:auto auto 1fr;column-gap:40px;justify-content:center;align-content:center;padding:calc(var(--safe-t) + 60px) 32px 28px}
+  .mm-stage{grid-column:1;grid-row:1/4;width:calc((100cqh - 100px) * .75);max-width:none}
+  .mm-head{grid-column:2;grid-row:1;width:auto;margin:0;padding-top:20px}
+  .mm-room{font-size:30px}
+  .mm-foot{grid-column:2;grid-row:2;width:auto;margin:16px 0 0}
+  .mm-found{flex-direction:column}
+  .mm-found .slot{min-height:52px;font-size:14px}
+
+  /* 結果：まとめのタイルを広く */
+  .res-body{width:min(100%,960px)}
+  .tiles{grid-template-columns:repeat(3,1fr)}
+}
